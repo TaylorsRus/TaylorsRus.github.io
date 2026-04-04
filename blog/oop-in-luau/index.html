@@ -57,7 +57,7 @@
  
   
     
-    <link rel="stylesheet" href="/css/custom.min.8208a7d68c0379debbb1f2ad79f23c593963c3abe3ca77961b14d405745cf95b.css" integrity="sha256-ggin1owDed67sfKtefI8WTljw6vjyneWGxTUBXRc&#43;Vs=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/custom.min.60acc97f656501a1dde6a7f6b5e10aefb8fb6465e42b54754767d534f715a649.css" integrity="sha256-YKzJf2VlAaHd5qf2teEK77j7ZGXkK1R1R2fVNPcVpkk=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -241,7 +241,7 @@
 </span></span><span style="display:flex;"><span>ReplicatedStorage.Events.ReplicateObject.OnClientEvent:Connect(<span style="color:#66d9ef">function</span>(object)
 </span></span><span style="display:flex;"><span>    Class.Method(object)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>)
-</span></span></code></pre></div><p>Now, this does come with it&rsquo;s own sacrifices. You cannot utilize the colon sugar syntax, and your forced to leave your source code open to decompilation by leaving it exposed to the client, but it is something to consider. Personally, I prefer to break down the state of my class, and only replicate what I need to.</p>
+</span></span></code></pre></div><p>Now, this does come with it&rsquo;s own sacrifices. You cannot utilize the colon sugar syntax, and you&rsquo;re forced to leave your source code open to decompilation by leaving it exposed to the client, but it is something to consider. Personally, I prefer to break down the state of my class, and only replicate what I need to.</p>
 <p>If you&rsquo;re not a fan of tracking the type of your methods when using the direct model, you can also use this to have implicit method typing from the class table.</p>
 <h2 id="use-case">
   Use case
@@ -296,7 +296,7 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>Standards are important in my opinion. Defining one can set you up for less headaches in the future, it may seem like a large upfront cost in terms of the time you spend setting the standard, but it allows the freedom of really not thinking as much, and just sticking to the standard, that&rsquo;s to say it doesn&rsquo;t just give you the benefit of your code being better when going back, but also just being easier to write as you&rsquo;re going forward. I&rsquo;m really happy with the standard I&rsquo;ve defined for myself with objects, and I wanted to share it because I think it can be of benefit to individuals who get overwhelmed with the amount of options. My goal with this perosnal structure was to strip out as much fluff as possible, even though we have still left a bit of fluff in there, otherwise it&rsquo;d be completely snake_case!</p>
+<p>Standards are important in my opinion. Defining one can set you up for less headaches in the future, it may seem like a large upfront cost in terms of the time you spend setting the standard, but it allows the freedom of really not thinking as much, and just sticking to the standard, that&rsquo;s to say it doesn&rsquo;t just give you the benefit of your code being better when going back, but also just being easier to write as you&rsquo;re going forward. I&rsquo;m really happy with the standard I&rsquo;ve defined for myself with objects, and I wanted to share it because I think it can be of benefit to individuals who get overwhelmed with the amount of options. My goal with this personal structure was to strip out as much fluff as possible, even though we have still left a bit of fluff in there, otherwise it&rsquo;d be completely snake_case!</p>
 
   </article>
 </section>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  Principles &amp; Arbitrariness · TaylorsRus
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="TaylorsRus">
+<meta name="description" content="Why can this be such a bottleneck for programmers?">
+<meta name="keywords" content="">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Principles & Arbitrariness">
+  <meta name="twitter:description" content="Why can this be such a bottleneck for programmers?">
+
+<meta property="og:url" content="http://localhost:1313/blog/principles-and-arbitrariness/">
+  <meta property="og:site_name" content="TaylorsRus">
+  <meta property="og:title" content="Principles & Arbitrariness">
+  <meta property="og:description" content="Why can this be such a bottleneck for programmers?">
+  <meta property="og:locale" content="en_uk">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2026-04-09T13:11:15+01:00">
+    <meta property="article:modified_time" content="2026-04-09T13:11:15+01:00">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/blog/principles-and-arbitrariness/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+ 
+  
+    
+    <link rel="stylesheet" href="/css/custom.css" media="screen">
+  
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+<body class="preload-transitions colorscheme-light">
+  
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      TaylorsRus
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog/">Blog</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="http://localhost:1313/blog/principles-and-arbitrariness/">
+          Principles &amp; Arbitrariness
+        </a>
+      </h1>
+    </header>
+
+    <p>Coding principles can be super daunting, in conjunction with extremely guiding and rewarding to follow. For me personally, it&rsquo;s caused <strong>a lot</strong> of paralysis-via-analysis while I&rsquo;m coding, and so I thought I would go over some of the principles which keep coming back to both haunt me, and guide me; my personal experiences with them, and how I&rsquo;ve overcome some philosophical difficulties in relation to them</p>
+<h2 id="dry-do-not-repeat-yourself">
+  DRY (Do-Not Repeat Yourself)
+  <a class="heading-link" href="#dry-do-not-repeat-yourself">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>This could be considered the cornerstone, or maybe just the most well known and established principle, Do-Not Repeat Yourself.</p>
+<p>At a fundamental level, it&rsquo;s pretty easy to follow. Write re-usable functions, combine code which does the same thing under args and config, centralize your data so code in multiple locations can refer to one data point, so on and so forth, but once you have a solid understanding on the basics of DRY, the level of scrutiny you can give to your code really sky rockets, which can cause a crippling sense of &ldquo;could this be done more principally?&rdquo;.</p>
+<p>I&rsquo;ll give a real world example. Recently, I was modifying the API of a basic wrapper around a datatype, take in an initial value, and use setters/getters so you can listen in with an injected <code>changed</code> event. I wanted to create two upgrades to this API</p>
+<ol>
+<li>I wanted read only values, a valid and simple addition</li>
+<li>I wanted to be able to bind a value object to a property, acting as the new point of contact for that property on the object</li>
+</ol>
+<p>It spiralled pretty quickly, a lot of over-engineering, and eventually I created a secondary wrapper, <code>PropertyValue</code>; placed it in the same directory, and now I had what I believed was a clear separation of concerns.</p>
+<p><em>But was this a shining example of proper DRY?</em></p>
+<p>The short answer? No. Internally in the API, as well as the file name, and the existence of it next to it&rsquo;s wrapped counterpart, <code>Value</code>, was in distinct violation of DRY. To strictly follow this principle, I would need something like having <code>Value/Property</code> be the wrapper, accessed with something like <code>Value.PropertyBinder.new()</code>, or <code>Value.newPropertyBinder</code>. With the former violating dry in a different way.</p>
+<p>Here&rsquo;s the point, and this is something I had to learn through brutal stagnation. DRY is important, but the less influential your repetition is, the harder it will be to reason what is the better alternative. In this case, I have 3 wrappers for <code>Value</code>, in the same directory, and that works really well with Luau LSP&rsquo;s auto import, and doesn&rsquo;t clog my directory, because said directory is not already a mess. I&rsquo;m playing into other principles at the behest of DRY, because they usually impact the ongoing coding experience more often.</p>
+<p>DRY violation is pretty linear, the more you repeat yourself, the less maintainable your code gets, but below a baseline, other things take precedence. It is useful to a point, and then it is a burden.</p>
+<h2 id="yagni-you-arent-gonna-need-it">
+  YAGNI (You Aren&rsquo;t Gonna Need It)
+  <a class="heading-link" href="#yagni-you-arent-gonna-need-it">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>I&rsquo;ll gloss over this one, I think it&rsquo;s pretty straight forward and self-explanatory, in a way which needs less context then other principles.</p>
+<p>The second you do think an abstraction of some kind would provide value; Go for it, but until it isn&rsquo;t, don&rsquo;t spend too long bargaining about it&rsquo;s use.</p>
+<p>The example I&rsquo;ll give is cross platform support. Unless you&rsquo;re experienced developing for multiple platforms, have spent time creating some sort of API for handling it, or are simply interested in doing exactly that, it&rsquo;s something I stay away from.</p>
+<p>The reason for me is simple. My game doesn&rsquo;t need mobile support if it never releases, building mobile support does not get towards the goal of releasing it, and while I do tend to go off on side quests that aren&rsquo;t directly related to features, they never get so far away, to the point I&rsquo;m creating a thing that might never even be used.</p>
+<p>Now, a common counter-arguement for this perspective is that you&rsquo;ll have to undo your work, and my response would be, you&rsquo;re going to do that anyways. If you care about your work, and aren&rsquo;t pushing code to production ASAP, the chances you revisit things often over and over are high. The entire setup you have for bringing user input all the way to it&rsquo;s correlated functionality could be scrapped, including the mobile support you pushed to include! Beyond that, trying to juggle mobile support can be an ongoing trifle in creating features, which can be disuading, or even debilitating. With all that being said, Roblox has recently released the InputActionService to tackle problems like this, trying to make it trouble free.</p>
+<h2 id="kiss-keep-it-simple-stupid">
+  KISS (Keep It Simple Stupid)
+  <a class="heading-link" href="#kiss-keep-it-simple-stupid">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>This seems really easy to follow at first, all you have to do is not overthink things, get to the point, and don&rsquo;t go above-and-beyond the project criteria. The uncomfortable truth is that as you&rsquo;re developing something, you often don&rsquo;t have the clarity to do this, because it often requires taking a step back, while your primary objective is stepping forward.</p>
+<p>I&rsquo;ll come back to my <code>Value</code> example. Before <code>PropertyValue</code>, the api looked like this!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">local</span> propertyValue <span style="color:#f92672">=</span> Value.fromProperty(instance, initial, propertyName)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">local</span> propertyValueFactory <span style="color:#f92672">=</span> Value.newPropertyFactory(instance)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">local</span> propertyValueFromFactory <span style="color:#f92672">=</span> propertyValueFactory:new(intial, propertyName)
+</span></span></code></pre></div><p>Now on the surface, this isn&rsquo;t too bad, but consider this. Before this, it was an overloaded constructor on <code>new</code>, and even in the above state, it had to inject itself into the functionality of a value, to bypass things like it&rsquo;s setter method, which ordinarily wouldn&rsquo;t persist onto the property it&rsquo;s watching, and you see where it goes.</p>
+<p>Because my goal was &ldquo;<em>upgrade</em> <code>Value</code> to support property&rdquo;, all I could see was a solution that was intertwined with it, but after taking a step back, I was able to identify that this is not an &ldquo;upgrade&rdquo; to value, but a layer, an extension, because this is completely new functionality, and only uses Value as a base for it&rsquo;s Getter, base Setter functionality, and changed event.</p>
+<p>So in short, for me, KISS has been about being able to take a step back, after the first prototype or two of a new design.</p>
+<h2 id="soc">
+  SoC
+  <a class="heading-link" href="#soc">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>This is maybe my favourite principle at the moment, it provides me with such jaw dropping, OMG moments, and has given me a new favourite word- <strong>abstraction</strong>.</p>
+<p>It leans back onto <strong>KISS</strong>, sometimes, as your idea develops or changes, and your scope widens, this is no longer the job of just one API, it would be neater handled by separate sections doing their own things.</p>
+<p>Let&rsquo;s use this example, I&rsquo;m making a fighting game, and I&rsquo;m creating the code which runs when your attack lands on someone. This is the section of the code which deals with the last hit in a combo, the one which applies a knockback, and a ragdoll.</p>
+<p>Initially, one might write all this code in one, perhaps separating the concerns into smaller functions, maybe not separated enough, but a good demonstration of the fundamental idea.</p>
+<p>To me, a ragdoll and a knockback are prime real estate for their own files, which take in a structure or instance (usually and probably, a character), and apply those effects. <code>Ragdoll.Build/Enable/Disable/Toggle</code> for example. Here are some more fuctionalities, in the same genre of code, which might benefit from completely separated concerns:</p>
+<ul>
+<li>Visual effects (particles, beams, 3d parts)</li>
+<li>Animation loading / property application</li>
+<li>Sound playing / property application</li>
+<li>Skill casting</li>
+</ul>
+<p>Here&rsquo;s the rule I stick to; If behaviour starts to get advanced around a concept, <strong>abstract it</strong>. Circle back to the name of your function, and ask, &ldquo;is this tightly related to this concept, or can it exist independently?&rdquo;</p>
+<p>While an attack can cause an explosion, require an animation or a sound effect, and may cause someone to ragdoll, all of these things can occur in <em>absence</em> of an attack, and so they&rsquo;re prime real estate to be be handled separately. What&rsquo;s important is you judge the scale of your behaviour, Things like skills, and ragdolls are obvious examples, but with something like a sound, if all you&rsquo;re doing is parenting a sound, playing and then destroying it, perhaps you do not need an abstraction, but if you&rsquo;re always parenting it to the same place, cleaning it up on destruction, applying modifiers, and fading in/out, perhaps you need an API which will help you manage these duties, at which point, to play nicely with SoC, you should abstract it.</p>
+<p>I wrote this a while ago, but never got around to finishing it, I&rsquo;ve chosen to post it as is because I like what I wrote, but it&rsquo;s by no means everything I wanted to say on this topic.,</p>
+
+  </article>
+</section>
+
+  
+
+    </div>
+
+    <footer class="footer">
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

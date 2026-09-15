@@ -2,17 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>TaylorsRus</title>
+<<<<<<< HEAD
     <link>http://localhost:1313/blog/</link>
+=======
+    <link>https://TaylorsRus.github.io/blog/</link>
+>>>>>>> bd31660a4477222267fad47be2f14fab8f8d179d
     <description>Recent content on TaylorsRus</description>
     <generator>Hugo</generator>
     <language>en-uk</language>
     <lastBuildDate>Sat, 04 Apr 2026 11:16:35 +0100</lastBuildDate>
+<<<<<<< HEAD
     <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>OOP in Luau</title>
       <link>http://localhost:1313/blog/oop-in-luau/</link>
       <pubDate>Sat, 04 Apr 2026 11:16:35 +0100</pubDate>
       <guid>http://localhost:1313/blog/oop-in-luau/</guid>
+=======
+    <atom:link href="https://TaylorsRus.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OOP in Luau</title>
+      <link>https://TaylorsRus.github.io/blog/oop-in-luau/</link>
+      <pubDate>Sat, 04 Apr 2026 11:16:35 +0100</pubDate>
+      <guid>https://TaylorsRus.github.io/blog/oop-in-luau/</guid>
+>>>>>>> bd31660a4477222267fad47be2f14fab8f8d179d
       <description>&lt;p&gt;I thought it was important to get some of my thoughts out regarding OOP, specifically in Luau / Roblox. It’s been really important in my recent code.&lt;/p&gt;&#xA;&lt;p&gt;I’d like to preface this by saying there is no correct way to do OOP. In this post, I’m going to be providing rationale towards my personal do&amp;rsquo;s and dont’s, but it’s all subjective, even if I sound really really objective in my sentence framing, really, it’s just an opinion.&lt;/p&gt;</description>
     </item>
   </channel>

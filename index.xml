@@ -6,8 +6,15 @@
     <description>Recent content on TaylorsRus</description>
     <generator>Hugo</generator>
     <language>en-uk</language>
-    <lastBuildDate>Sat, 04 Apr 2026 11:16:35 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 09 Apr 2026 13:11:15 +0100</lastBuildDate>
     <atom:link href="https://TaylorsRus.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Principles &amp; Arbitrariness</title>
+      <link>https://TaylorsRus.github.io/blog/principles-and-arbitrariness/</link>
+      <pubDate>Thu, 09 Apr 2026 13:11:15 +0100</pubDate>
+      <guid>https://TaylorsRus.github.io/blog/principles-and-arbitrariness/</guid>
+      <description>&lt;p&gt;Coding principles can be super daunting, in conjunction with extremely guiding and rewarding to follow. For me personally, it&amp;rsquo;s caused &lt;strong&gt;a lot&lt;/strong&gt; of paralysis-via-analysis while I&amp;rsquo;m coding, and so I thought I would go over some of the principles which keep coming back to both haunt me, and guide me; my personal experiences with them, and how I&amp;rsquo;ve overcome some philosophical difficulties in relation to them&lt;/p&gt;&#xA;&lt;h2 id=&#34;dry-do-not-repeat-yourself&#34;&gt;&#xD;&#xA;  DRY (Do-Not Repeat Yourself)&#xD;&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#dry-do-not-repeat-yourself&#34;&gt;&#xD;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xD;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xD;&#xA;  &lt;/a&gt;&#xD;&#xA;&lt;/h2&gt;&#xD;&#xA;&lt;p&gt;This could be considered the cornerstone, or maybe just the most well known and established principle, Do-Not Repeat Yourself.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>OOP in Luau</title>
       <link>https://TaylorsRus.github.io/blog/oop-in-luau/</link>
